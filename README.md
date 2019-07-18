@@ -28,4 +28,5 @@ SQL Schema:
     | post_id    | varchar(100) | NO   | PRI | NULL    |       |
     | faculty_id | varchar(50)  | YES  |     | NULL    |       |
     | title      | varchar(200) | YES  |     | NULL    |       |
+    | media_type | varchar(10)  | YES  |     | NULL    |       |
     +------------+--------------+------+-----+---------+-------+
