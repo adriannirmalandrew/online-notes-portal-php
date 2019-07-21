@@ -4,7 +4,9 @@
 		<title>Search Results</title>
 	</head>
 	<body>
-		<h2>Clone University Portal</h2>
+		<div id="title">
+			<h2>Clone University Portal</h2>
+		</div>
 		<h3>Search Results</h3>
 		<?php
 			//TODO: Show search results
