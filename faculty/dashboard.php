@@ -28,7 +28,9 @@
 		<title>Faculty Dashboard</title>
 	</head>
 	<body>
-		<h2>Clone University Faculty Dashboard</h2>
+		<div id="title">
+			<h2>Clone University Faculty Dashboard</h2>
+		</div>
 		<!--TODO: CREATE FACULTY DASHBOARD TOOLBOX-->
 		<h3>TODO</h3>
 		<h3><a href="logout.php">LOGOUT</a></h3>
