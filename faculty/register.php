@@ -1,4 +1,13 @@
 <?php
+	/*
+	Error codes:
+	r0 - Registration Successful!
+	r1 - Registration Error: One or more fields empty!
+	r2 - Registration Error: Faculty ID is already registered!
+	r3 - Registration Error: Passwords do not match!
+	r4 - Registration Error: Invalid Faculty ID!
+	*/
+	
 	//Get the arguments:
 	$faculty_id=$_POST["faculty_id"];
 	$password=$_POST["password"];
@@ -6,7 +15,7 @@
 	
 	//Make sure all fields are filled:
 	if($faculty_id=="" || $password=="" || $confirm_password=="") {
-		echo "<h3>One or more fields empty!</h3>";
+		header("Location: dashboard_login.php?errcode=r1");
 		exit();
 	}
 	
@@ -23,19 +32,32 @@
 		odbc_execute($reg_faculty_id_res, array($faculty_id));
 		//If ID is already registered, show error message and redirect:
 		if(odbc_fetch_row($reg_faculty_id_res)) {
-			echo "<h3>Faculty ID is already registered! Redirecting...</h3>";
-			sleep(5);
-			header("Location: dashboard_login.php");
+			header("Location: dashboard_login.php?errcode=r2");
+			odbc_close($db_conn);
 			exit();
 		}
 		//If not, check the password fields:
 		else {
-			//TODO
+			if($password!=$confirm_password) {
+				header("Location: dashboard_login.php?errcode=r3");
+				odbc_close($db_conn);
+				exit();
+			}
+			//Hash the password:
+			$password_hash=hash("sha256", $password);
+			//Finally, insert values into table:
+			$register_faculty_res=odbc_prepare($db_conn, "insert into login values(?,?,?)");
+			odbc_execute($register_faculty_res, array($faculty_id, $password_hash, "none"));
+			//Close connection and redirect:
+			odbc_close($db_conn);
+			header("Location: dashboard_login.php?errcode=r0");
+			exit();
 		}
 	}
 	//If not, show error message and redirect:
 	else {
-		echo "<h3>Invalid Faculty ID!</h3>";
+		header("Location: dashboard_login.php?errcode=r4");
+		odbc_close($db_conn);
 		exit();
 	}
 ?>

@@ -24,7 +24,36 @@
 		<title>Faculty Dashboard Login</title>
 	</head>
 	<body>
-		<h2>Clone University Dashboard</h2>
+		<div id="title">
+			<h2>Clone University Dashboard</h2>
+		</div>
+		
+		<?php
+			//Check if an error message was given during login/registration:
+			//Error code from URL:
+			$errcode=$_GET["errcode"];
+			//Print corresponding error:
+			echo "<div id=\"login_error\">";
+			switch($errcode) {
+				case "r0":
+					echo "Registration Successful!";
+					break;
+				case "r1":
+					echo "Registration Error: One or more fields empty!";
+					break;
+				case "r2":
+					echo "Registration Error: Faculty ID is already registered!";
+					break;
+				case "r3":
+					echo "Registration Error: Passwords do not match!";
+					break;
+				case "r4":
+					echo "Registration Error: Invalid Faculty ID!";
+					break;
+			}
+			echo "</div>";
+		?>
+		
 		<h3>Please login to continue:</h3>
 		<form action="login.php" method="post">
 			<table>
