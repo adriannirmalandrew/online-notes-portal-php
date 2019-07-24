@@ -33,6 +33,8 @@ SQL Schema:
 
 Post content must be stored in plaintext format, in the /posts directory. Each file must have the same name as the post_id it corresponds to. The following media types are valid:
 
+-NONE
+
 -IMAGE
 
 -VIDEO
