@@ -6,10 +6,10 @@
 		//Make connection:
 		$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
 		//Prepare and execute statement:
-		$db_stmt=odbc_prepare("select faculty_id from login where session_id=?");
-		$db_result=odbc_execute($db_stmt, array($_COOKIE["session_id"]));
+		$db_stmt=odbc_prepare($db_conn, "select faculty_id from login where session_id=?");
+		odbc_execute($db_stmt, array($_COOKIE["session_id"]));
 		//If session ID doesn't exist:
-		if(!odbc_fetch_row($db_result)) {
+		if(!odbc_fetch_row($db_stmt)) {
 			header("Location: dashboard_login.php");
 			odbc_close($db_conn);
 			exit();
