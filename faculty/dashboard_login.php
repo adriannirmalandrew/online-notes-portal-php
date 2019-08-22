@@ -58,6 +58,10 @@
 				case "l2":
 					echo "Login error: Invalid Faculty ID or password!";
 					break;
+				//Invalid session ID:
+				case "s1":
+					echo "Invalid session ID!";
+					break;
 			}
 			echo "</div>";
 		?>
