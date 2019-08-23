@@ -60,7 +60,7 @@
 	odbc_execute($delete_post, array($post_id));
 	
 	//If a file was uploaded with the post, delete it:
-	
+	if($media_type!="NONE") unlink("/home/adrian/CSE3001_PROJECT/media/".$post_id);
 	
 	//Close and redirect:
 	odbc_close($db_conn);

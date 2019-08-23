@@ -54,7 +54,7 @@
 		</div>
 		<!--Create a new post-->
 		<h3>Create New Post:</h3>
-		<form action="upload.php" method="post">
+		<form action="upload.php" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Course Code:</td>
@@ -79,7 +79,7 @@
 				</tr>
 				<tr>
 					<td>File to upload:</td>
-					<td><input type="file" name="post_file" enctype="multipart/form-data"></td>
+					<td><input type="file" name="post_file"></td>
 				</tr>
 				<tr>
 					<td></td>

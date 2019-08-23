@@ -59,7 +59,6 @@
 	$db_stmt=odbc_prepare($db_conn, "insert into posts values(?,?,?,?,?)");
 	odbc_execute($db_stmt, array($post_id_new, $faculty_id, $course_code_new, $title_new, $media_type_new));
 	
-	if(isset($_FILES['post_file'])) print(getcwd());
 	//Upload file to server, if it exists:
 	if($media_type_new!="NONE") {
 		//Get file name:
@@ -69,7 +68,7 @@
 		//Get "actual" file name:
 		$file_tmp_name=$_FILES['post_file']['tmp_name'];
 		//Rename and transfer file to /media:
-		move_uploaded_file($file_tmp_name, "/home/adrian/CSE3001_PROJECT/media/".$file_name);
+		move_uploaded_file($file_tmp_name, "/home/adrian/CSE3001_PROJECT/media/".$post_id_new);
 	}
 	
 	//Close db_conn and redirect to dashboard.php:
