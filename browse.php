@@ -37,19 +37,34 @@
 		</form>
 		
 		<h3>Latest Posts:</h3>
+		<table>
 		<?php
 			//Open ODBC connection:
 			$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
-			//Get latest posts:
-			$posts_result=odbc_exec($db_conn, "select * from posts");
-			//Display 15:
-			$ctr=0;
-			while($ctr<15 && odbc_fetch_row($posts_result)) {
-				echo odbc_result($posts_result, "title");
-				echo "<br>";
-				$ctr++;
-				//TODO
+			//Get details for all posts:
+			$get_posts=odbc_prepare($db_conn, "select * from posts");
+			odbc_execute($get_posts, array());
+			//Print data in table format:
+			while(odbc_fetch_row($get_posts)) {
+				echo "<tr>";
+					//Post ID:
+					echo "<td>";
+						$post_id=odbc_result($get_posts, "post_id");
+						echo "<a href=\"/show_post.php?post_id=".$post_id."\">";
+						echo "<b>".$post_id."</b>";
+						echo "</a>";
+					echo "</td>";
+					//Course code:
+					echo "<td>";
+						echo "(".odbc_result($get_posts, "course_code").")";
+					echo "</td>";
+					//Post title:
+					echo "<td>";
+						echo odbc_result($get_posts, "title");
+					echo "</td>";
+				echo "</tr>";
 			}
 		?>
+		</table>
 	</body>
 </html>

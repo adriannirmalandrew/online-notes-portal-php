@@ -6,10 +6,14 @@
 	<body>
 		<div id="title">
 			<h2>Clone University Portal</h2>
+			<h3>
+				Showing Post:
+				<?php
+					$post_id=$_GET["post_id"];
+					echo $post_id;
+				?>
+			</h3>
 		</div>
-		<?php
-			//TODO: DISPLAYING SEARCH RESULTS
-		?>
-		<h3>Showing Post: </h3>
+		<!--TODO: DISPLAYING POST CONTENT-->
 	</body>
 </html>
