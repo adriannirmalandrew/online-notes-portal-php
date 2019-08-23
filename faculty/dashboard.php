@@ -6,7 +6,7 @@
 		//Make connection:
 		$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
 		//Prepare and execute statement:
-		$db_stmt=odbc_prepare($db_conn, "select faculty_id from login where session_id=?");
+		$db_stmt=odbc_prepare($db_conn, "select l.faculty_id, f.name fac_name, f.school fac_school from login l join faculty f on f.faculty_id=l.faculty_id where l.session_id=?");
 		odbc_execute($db_stmt, array($_COOKIE["session_id"]));
 		//If session ID doesn't exist:
 		if(!odbc_fetch_row($db_stmt)) {
@@ -28,9 +28,20 @@
 		<title>Faculty Dashboard</title>
 	</head>
 	<body>
+		<!--Print college name-->
 		<div id="title">
 			<h2>Clone University Faculty Dashboard</h2>
 		</div>
+		<!--Print faculty name and school ID-->
+		<div id="faculty_name">
+			<h2>
+				<?php
+					print("Welcome, ".odbc_result($db_stmt, "fac_name"));
+					print(" (School ID: ".odbc_result($db_stmt, "fac_school").")");
+				?>
+			</h2>
+		</div>
+		<!--Print error message, if any-->
 		<div id="error">
 			<?php
 				$errcode=$_GET["errcode"];
