@@ -6,7 +6,7 @@
 		//Make connection:
 		$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
 		//Prepare and execute statement:
-		$db_stmt=odbc_prepare($db_conn, "select l.faculty_id, f.name fac_name, f.school fac_school from login l join faculty f on f.faculty_id=l.faculty_id where l.session_id=?");
+		$db_stmt=odbc_prepare($db_conn, "select l.faculty_id fac_id, f.name fac_name, f.school fac_school from login l join faculty f on f.faculty_id=l.faculty_id where l.session_id=?");
 		odbc_execute($db_stmt, array($_COOKIE["session_id"]));
 		//If session ID doesn't exist:
 		if(!odbc_fetch_row($db_stmt)) {
@@ -14,6 +14,10 @@
 			odbc_close($db_conn);
 			exit();
 		}
+		//Get user details from db_stmt:
+		$faculty_id=odbc_result($db_stmt, "fac_id");
+		$faculty_name=odbc_result($db_stmt, "fac_name");
+		$school_id=odbc_result($db_stmt, "fac_school");
 	}
 	else {
 		header("Location: dashboard_login.php");
@@ -36,8 +40,8 @@
 		<div id="faculty_name">
 			<h2>
 				<?php
-					print("Welcome, ".odbc_result($db_stmt, "fac_name"));
-					print(" (School ID: ".odbc_result($db_stmt, "fac_school").")");
+					echo "Welcome, ".$faculty_name;
+					echo " (School ID: ".$school_id.")";
 				?>
 			</h2>
 		</div>
@@ -98,12 +102,41 @@
 				</tr>
 			</table>
 		</form>
+		<!--Print list of posts from the logged-in user-->
+		<h3>Your Posts:</h3>
+		<div id="your_posts" style="height:100px;overflow:scroll">
+			<table>
+				<?php
+					$get_posts=odbc_prepare($db_conn, "select * from posts where faculty_id=?");
+					odbc_execute($get_posts, array($faculty_id));
+					while(odbc_fetch_row($get_posts)) {
+						echo "<tr>";
+							//Post ID:
+							echo "<td>";
+								$post_id=odbc_result($get_posts, "post_id");
+								echo "<a href=\"/show_post.php?post_id=".$post_id."\">";
+								echo "<b>".$post_id."</b>";
+								echo "</a>";
+							echo "</td>";
+							//Course code:
+							echo "<td>";
+								echo "(".odbc_result($get_posts, "course_code").")";
+							echo "</td>";
+							//Post title:
+							echo "<td>";
+								echo odbc_result($get_posts, "title");
+							echo "</td>";
+						echo "</tr>";
+					}
+				?>
+			</table>
+		</div>
 		<!--Delete a post-->
 		<h3>Delete a Post:</h3>
 		<form action="delete.php" method="post">
 			<table>
 				<tr>
-					<td>Post ID</td>
+					<td>Post ID:</td>
 					<td><input type="text" name="post_id"></td>
 				</tr>
 				<tr>
@@ -112,6 +145,10 @@
 				</tr>
 			</table>
 		</form>
-		<h3><a href="logout.php">LOGOUT</a></h3>
+		<!--Logout form-->
+		<h3>Logout:</h3>
+		<form action="logout.php">
+			<input type="submit" value="Logout">
+		</form>
 	</body>
 </html>
