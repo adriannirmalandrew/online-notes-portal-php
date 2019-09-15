@@ -6,7 +6,7 @@
 		//Make connection:
 		$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
 		//Prepare and execute statement:
-		$db_stmt=odbc_prepare($db_conn, "select l.faculty_id fac_id, f.name fac_name, f.school fac_school from login l join faculty f on f.faculty_id=l.faculty_id where l.session_id=?");
+		$db_stmt=odbc_prepare($db_conn, "select l.faculty_id fac_id, f.name fac_name, f.school fac_school from login l join faculty f on f.faculty_id = l.faculty_id where l.session_id=?");
 		odbc_execute($db_stmt, array($_COOKIE["session_id"]));
 		//If session ID doesn't exist:
 		if(!odbc_fetch_row($db_stmt)) {
@@ -80,15 +80,15 @@
 					<td><input type="text" name="post_title"></td>
 				</tr>
 				<tr>
-					<td>Media Type:</td>
+					<td>Attachment Type:</td>
 					<td>
 						<select name="post_media_type">
-							<option value="NONE">NONE</option>
-							<option value="IMAGE">IMAGE</option>
-							<option value="VIDEO">VIDEO</option>
-							<option value="TEXT">TEXT</option>
-							<option value="LINK">LINK</option>
-							<option value="RAW">RAW</option>
+							<option value="NONE">None</option>
+							<option value="IMAGE">Image</option>
+							<option value="VIDEO">Video</option>
+							<option value="TEXT">Plain Text</option>
+							<option value="LINK">Hyperlink</option>
+							<option value="RAW">Other File</option>
 						</select>
 					</td>
 				</tr>
