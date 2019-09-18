@@ -60,11 +60,16 @@
 	odbc_execute($delete_post, array($post_id));
 	
 	//If a file was uploaded with the post, delete it:
-	$file_dir_path=$_SERVER['DOCUMENT_ROOT']."/media/".$post_id;
-	$media_file_name=scandir($file_dir_path)[2];
-	if($media_type!="NONE") unlink($file_dir_path."/".$media_file_name);
-	//Delete folder:
-	rmdir($file_dir_path);
+	if($media_type!="NONE") {
+		//Get folder path:
+		$file_dir_path=$_SERVER['DOCUMENT_ROOT']."/media/".$post_id;
+		//Get full file name:
+		$media_file_name=scandir($file_dir_path)[2];
+		//Delete file:
+		unlink($file_dir_path."/".$media_file_name);
+		//Delete folder:
+		rmdir($file_dir_path);
+	}
 	
 	//Close and redirect:
 	odbc_close($db_conn);
