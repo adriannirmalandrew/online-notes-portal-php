@@ -67,11 +67,16 @@
 					echo "<embed src=\"/media/".$post_id."\" width=100%>";
 					echo "\r";
 				} else if($media_type=="TEXT") {
-					//Get text and display:
-					//TODO
-				} else if($media_type=="LINK") {
-					//Display link content in iframe:
-					//TODO
+					//Open text file:
+					$text_file=fopen($_SERVER['DOCUMENT_ROOT']."/media/".$post_id."/".$media_file_name, "r");
+					//Read contents, line by line:
+					while(!feof($text_file)) {
+						$temp_line=fgets($text_file);
+						echo $temp_line;
+						echo "<br>";
+					}
+					//Close file:
+					fclose($text_file);
 				} else if($media_type=="RAW") {
 					//Provide download link:
 					echo "<h3>";
