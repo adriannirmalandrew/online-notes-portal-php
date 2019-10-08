@@ -40,8 +40,6 @@ Post content must be stored in plaintext format, in the /posts directory. Each f
 
 -TEXT
 
--LINK
-
 -RAW
 
 The show\_posts.php page will be displayed according to the media\_type for the post.
