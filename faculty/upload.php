@@ -67,8 +67,10 @@
 		$file_size=$_FILES['post_file']['size'];
 		//Get "actual" file name:
 		$file_tmp_name=$_FILES['post_file']['tmp_name'];
-		//Rename and transfer file to /media:
-		move_uploaded_file($file_tmp_name, "/home/adrian/CSE3001_PROJECT/media/".$post_id_new);
+		//Rename and transfer file to /media/$post_id_new:
+		$file_dir_path=$_SERVER['DOCUMENT_ROOT']."/media/".$post_id_new;
+		mkdir($file_dir_path);
+		move_uploaded_file($file_tmp_name, $file_dir_path."/".$file_name);
 	}
 	
 	//Close db_conn and redirect to dashboard.php:

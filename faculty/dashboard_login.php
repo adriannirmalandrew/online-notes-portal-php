@@ -104,5 +104,6 @@
 			</tr>
 			</table>
 		</form>
+		<a href="/"><h3>Go back home</h3></a>
 	</body>
 </html>

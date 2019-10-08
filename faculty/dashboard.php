@@ -25,7 +25,6 @@
 		exit();
 	}
 ?>
-
 <!--This page is the dashboard.-->
 <html>
 	<head>
@@ -88,7 +87,6 @@
 							<option value="IMAGE">Image</option>
 							<option value="VIDEO">Video</option>
 							<option value="TEXT">Plain Text</option>
-							<option value="LINK">Hyperlink</option>
 							<option value="RAW">Other File</option>
 						</select>
 					</td>
