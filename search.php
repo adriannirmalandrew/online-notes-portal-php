@@ -6,6 +6,7 @@
 <!--This page is used to show search results.-->
 <html>
 	<head>
+		<link rel="stylesheet" href="/css/search.css"></link>
 		<title>Search Results</title>
 	</head>
 	<body>
@@ -47,7 +48,9 @@
 					echo "</html>";
 					exit();
 				}
-				echo "<h3>Results:</h3>";
+				echo "<h3>Results for ";
+				echo "\"".$keyword."\"";
+				echo ":</h3>";
 				echo "<table>";
 				//Connect and get data:
 				$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");

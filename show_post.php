@@ -28,11 +28,14 @@
 <!--This script is used to display a single post-->
 <html>
 	<head>
+		<link rel="stylesheet" href="/css/show_post.css"></link>
 		<title>Clone University</title>
 	</head>
 	<body>
 		<div id="title">
 			<h2>Clone University Portal</h2>
+		</div>
+		<div id="post-details">
 			<h3>
 				Showing resource for course: 
 				<?php echo $course_code."\n"; ?>
@@ -47,10 +50,13 @@
 					echo ")\n";
 				?>
 			</h3>
+		</div>
+		<div id="post-title">
 			<h2>
 				<?php echo $title."\n"; ?>
 			</h2>
 		</div>
+		<div id="post-content">
 		<?php
 			if($media_type!="NONE") {
 				//Get name of uploaded file:
@@ -89,5 +95,6 @@
 				echo "\t\t</div>\n";
 			} else echo "<h3>(No Attached Media)<h3>";
 		?>
+		</div>
 	</body>
 </html>

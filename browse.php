@@ -5,6 +5,7 @@
 -->
 <html>
 	<head>
+		<link rel="stylesheet" href="/css/browse.css"></link>
 		<title>Clone University</title>
 	</head>
 	<body>
@@ -36,9 +37,6 @@
 				</table>
 			</form>
 		</div>
-		<?php
-			//This is to display search results instead of the latest posts:
-		?>
 		<div id="latest-posts">
 			<h3>Latest Posts:</h3>
 			<table>
