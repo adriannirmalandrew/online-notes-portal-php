@@ -1,0 +1,38 @@
+body {
+	font-family: sans-serif;
+	background-color: white;
+}
+
+#title {
+	background-color: blue;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	text-align: center;
+}
+
+#error {
+	text-align: center;
+	background-color: red;
+	color: white;
+}
+
+#faculty-name {
+	text-align: center;
+}
+
+#your-posts {
+	height:100px;
+	width: 40%;
+	overflow:auto;
+	margin-left: 30%;
+}
+
+h3 {
+	text-align: center;
+}
+
+form {
+	margin-left: 35%;
+}

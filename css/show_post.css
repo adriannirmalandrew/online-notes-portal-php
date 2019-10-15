@@ -1,0 +1,32 @@
+body {
+	font-family: sans-serif;
+	background-color: white;
+}
+
+#title {
+	background-color: blue;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	text-align: center;
+}
+
+#post-title {
+	background-color: blue;
+	color: white;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 100%;
+	text-align: center;
+}
+
+#post-details {
+	text-align: center;
+}
+
+#post-content {
+	text-align: center;
+	font-size: 20px;
+	margin-top: 10px;
+}

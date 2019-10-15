@@ -1,0 +1,26 @@
+body {
+	font-family: sans-serif;
+	background-color: white;
+}
+
+#title {
+	background-color: blue;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	text-align: center;
+}
+
+#search-form {
+	width: 100%;
+	text-align: center;
+}
+
+table {
+	margin-left: 35%;
+}
+
+#latest-posts {
+	text-align: center;
+}

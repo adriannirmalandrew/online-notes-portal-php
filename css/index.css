@@ -1,0 +1,21 @@
+body {
+	font-family: sans-serif;
+	background-color: white;
+}
+
+#title {
+	background-color: blue;
+	color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	text-align: center;
+}
+
+#links {
+	text-align: center;
+}
+
+#authors {
+	text-align: center;
+}
