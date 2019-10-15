@@ -21,19 +21,19 @@
 <!--This is the page to register/login for the faculty members' dashboard-->
 <html>
 	<head>
+		<link rel="stylesheet" href="/css/dashboard_login.css"></link>
 		<title>Faculty Dashboard Login</title>
 	</head>
 	<body>
 		<div id="title">
 			<h2>Clone University Dashboard</h2>
 		</div>
-		
+		<div id="error" onclick="onErrorClick()">
 		<?php
 			//Check if an error message was given during login/registration:
 			//Error code from URL:
 			$errcode=$_GET["errcode"];
 			//Print corresponding error:
-			echo "<div id=\"login_error\">";
 			switch($errcode) {
 				//Registration error codes:
 				case "r0":
@@ -63,47 +63,56 @@
 					echo "Invalid session ID!";
 					break;
 			}
-			echo "</div>";
 		?>
-		
-		<h3>Please login to continue:</h3>
-		<form action="login.php" method="post">
-			<table>
-			<tr>
-				<td>Faculty ID:</td>
-				<td><input type="text" name="faculty_id"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Login"><td>
-			</tr>
-			</table>
-		</form>
-		<h3>Register, if not registered:</h3>
-		<form action="register.php" method="post">
-			<table>
-			<tr>
-				<td>Faculty ID:</td>
-				<td><input type="text" name="faculty_id"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password"></td>
-			</tr>
-			<tr>
-				<td>Confirm Password:</td>
-				<td><input type="password" name="confirm_password"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Register"><td>
-			</tr>
-			</table>
-		</form>
+		</div>
+		<script>
+			function onErrorClick() {
+				let error_div=document.getElementById("error");
+				error_div.remove();
+			}
+		</script>
+		<div id="login-form">
+			<h3>Please login to continue:</h3>
+			<form action="login.php" method="post">
+				<table>
+				<tr>
+					<td>Faculty ID:</td>
+					<td><input type="text" name="faculty_id"></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Login"><td>
+				</tr>
+				</table>
+			</form>
+		</div>
+		<div id="registration-form">
+			<h3>Register, if not registered:</h3>
+			<form action="register.php" method="post">
+				<table>
+				<tr>
+					<td>Faculty ID:</td>
+					<td><input type="text" name="faculty_id"></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>Confirm Password:</td>
+					<td><input type="password" name="confirm_password"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Register"><td>
+				</tr>
+				</table>
+			</form>
+		</div>
 		<a href="/"><h3>Go back home</h3></a>
 	</body>
 </html>
