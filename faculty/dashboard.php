@@ -34,7 +34,7 @@
 	<body>
 		<!--Print college name-->
 		<div id="title">
-			<h2>Clone University Dashboard</h2>
+			<a href="/"><h2>Clone University Dashboard</h2></a>
 		</div>
 		<!--Print faculty name and school ID-->
 		<div id="faculty-name">
@@ -44,10 +44,18 @@
 					echo " (School ID: ".$school_id.")";
 					echo "\n";
 				?>
-				<a href="logout.php">Logout</a>
 			</h2>
 		</div>
+		<div id="faculty-logout">
+			<h2><a href="logout.php">Logout</a></h2>
+		</div>
 		<!--Print error message, if any-->
+		<script>
+			function onErrorClick() {
+				let error_div=document.getElementById("error");
+				error_div.remove();
+			}
+		</script>
 		<div id="error" onclick="onErrorClick()">
 			<?php
 				$errcode=$_GET["errcode"];
@@ -69,13 +77,8 @@
 				}
 			?>
 		</div>
-		<script>
-			function onErrorClick() {
-				let error_div=document.getElementById("error");
-				error_div.remove();
-			}
-		</script>
 		<!--Create a new post-->
+		<div id="post-manage">
 		<h3>Create New Post:</h3>
 		<form action="upload.php" method="post" enctype="multipart/form-data">
 			<table>
@@ -109,6 +112,22 @@
 				</tr>
 			</table>
 		</form>
+		<!--Delete a post-->
+		<script>
+			function deleteConfirm(post_id) {
+				var post_id=document.getElementById("post_id_for_delete");
+				if(post_id.value=="") {
+					window.alert("Please enter a Post ID.");
+					document.getElementById("del_form").action="#";
+					return;
+				}
+				var del_confirm=window.confirm("Are you sure you want to delete post " + post_id.value + "?");
+				if(!del_confirm) {
+					document.getElementById("del_form").action="#";
+					return;
+				}
+			}
+		</script>
 		<?php
 			//Get posts from database:
 			$get_posts=odbc_prepare($db_conn, "select * from posts where faculty_id=?");
@@ -117,51 +136,55 @@
 			$posts_exist=odbc_fetch_row($get_posts);
 			//Display Post list and Delete form only if posts exist:
 			if($posts_exist) {
-				echo "
-				<!--Display post list-->
-				<h3>Your Posts:</h3>
-				<div id=\"your-posts\">
-				<table>";
-				do {
-					echo "<tr>";
-					//Post ID:
-					echo "<td>";
-						$post_id=odbc_result($get_posts, "post_id");
-						echo "<a href=\"/show_post.php?post_id=".$post_id."\">";
-						echo "<b>".$post_id."</b>";
-						echo "</a>";
-					echo "</td>";
-					//Course code:
-					echo "<td>";
-						$course_code=odbc_result($get_posts, "course_code");
-						echo "(".$course_code.")";
-					echo "</td>";
-					//Post title:
-					echo "<td>";
-						echo odbc_result($get_posts, "title");
-					echo "</td></tr>";
-				} while(odbc_fetch_row($get_posts));
-				echo "
-				</table>
-				</div>\r";
 				//Display the "Delete Post" form:
 				echo "
-				<!--Delete a post-->
 				<h3>Delete a Post:</h3>
-				<form action=\"delete.php\" method=\"post\">
+				<form id=\"del_form\" action=\"delete.php\" method=\"post\">
 					<table>
 						<tr>
 							<td>Post ID:</td>
-							<td><input type=\"text\" name=\"post_id\"></td>
-							<td><input type=\"submit\" value=\"Delete Post\"></td>
+							<td><input id=\"post_id_for_delete\" type=\"text\" name=\"post_id\"></td>
+							<td>
+								<div onclick=\"deleteConfirm()\">
+									<input type=\"submit\" value=\"Delete Post\">
+								</div>
+							</td>
 						</tr>
 					</table>
-				</form>
-				";
-			} else {
-				echo "<h3>No posts found.</h3>";
+				</form>";
 			}
-			echo "\n";
 		?>
+		</div>
+		<!--Posts made by the logged-in user-->
+		<div id="your-posts">
+			<h3>Your Posts:</h3>
+			<?php
+				if($posts_exist) {
+					echo "<table>";
+					do {
+						echo "<tr>";
+						//Post ID:
+						echo "<td>";
+							$post_id=odbc_result($get_posts, "post_id");
+							echo $post_id;
+						echo "</td>";
+						//Course code:
+						echo "<td>";
+							$course_code=odbc_result($get_posts, "course_code");
+							echo "(".$course_code.")";
+						echo "</td>";
+						//Post title:
+						echo "<td>";
+							echo "<a href=\"/show_post.php?post_id=".$post_id."\">";
+							echo "<b>".odbc_result($get_posts, "title")."</b>";
+							echo "</a>";
+						echo "</td></tr>";
+					} while(odbc_fetch_row($get_posts));
+					echo "</table>";
+				} else {
+					echo "<h3>No posts found.</h3>";
+				}
+			?>
+		</div>
 	</body>
 </html>

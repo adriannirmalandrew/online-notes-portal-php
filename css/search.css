@@ -12,6 +12,11 @@ body {
 	text-align: center;
 }
 
+#title a {
+	color: white;
+	text-decoration: none;
+}
+
 #search-form {
 	width: 100%;
 	text-align: center;

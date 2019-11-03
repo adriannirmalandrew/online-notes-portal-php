@@ -12,6 +12,11 @@ body {
 	text-align: center;
 }
 
+#title a {
+	color: white;
+	text-decoration: none;
+}
+
 #post-title {
 	background-color: blue;
 	color: white;
@@ -29,4 +34,8 @@ body {
 	text-align: center;
 	font-size: 20px;
 	margin-top: 10px;
+}
+
+#dl-confirm {
+	text-align: center;
 }

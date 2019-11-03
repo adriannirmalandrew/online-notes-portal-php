@@ -1,6 +1,5 @@
 <?php
 	//Action for deleting a post
-	
 	//Connect to database:
 	$db_conn=odbc_connect("MariaDBLocal", "root", "kingspammernerd");
 	

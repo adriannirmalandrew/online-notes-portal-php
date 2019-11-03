@@ -33,7 +33,7 @@
 	</head>
 	<body>
 		<div id="title">
-			<h2>Clone University Portal</h2>
+			<a href="/"><h2>Clone University Portal</h2></a>
 		</div>
 		<div id="post-details">
 			<h3>
@@ -45,9 +45,7 @@
 				<?php
 					echo $faculty_name.", ";
 					echo $faculty_school;
-					echo " (";
-					echo $faculty_id;
-					echo ")\n";
+					echo " (".$faculty_id.")";
 				?>
 			</h3>
 		</div>
@@ -62,7 +60,7 @@
 				//Get name of uploaded file:
 				$media_file_name=scandir($_SERVER['DOCUMENT_ROOT']."/media/".$post_id)[2];
 				//Display media content, if any:
-				echo "<div id=\"media-content\">\n\t\t\t";
+				echo "<div id=\"media-content\">";
 				if($media_type=="IMAGE") {
 					//Display image as-is:
 					echo "<img src=\"/media/".$post_id."/".$media_file_name."\" width=100%>";
@@ -84,6 +82,7 @@
 					//Close file:
 					fclose($text_file);
 				} else if($media_type=="RAW") {
+					echo "<div onclick=\"displayDlMessage()\">";
 					//Provide download link:
 					echo "<h3>";
 					echo "Attached file: ";
@@ -91,10 +90,18 @@
 					echo "Download File";
 					echo "</a>";
 					echo "</h3>";
+					echo "</div>";
 				}
-				echo "\t\t</div>\n";
+				echo "</div>";
 			} else echo "<h3>(No Attached Media)<h3>";
 		?>
 		</div>
+		<script>
+			function displayDlMessage() {
+				var dl_confirm=document.getElementById("dl-confirm");
+				dl_confirm.innerHTML="Download has started. Please check your Downloads folder.";
+			}
+		</script>
+		<h3><div id="dl-confirm"></div></h3>
 	</body>
 </html>

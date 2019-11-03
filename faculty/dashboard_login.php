@@ -26,7 +26,7 @@
 	</head>
 	<body>
 		<div id="title">
-			<h2>Clone University Dashboard</h2>
+			<a href="/"><h2>Clone University Dashboard</h2></a>
 		</div>
 		<div id="error" onclick="onErrorClick()">
 		<?php
@@ -113,6 +113,5 @@
 				</table>
 			</form>
 		</div>
-		<a href="/"><h3>Go back home</h3></a>
 	</body>
 </html>

@@ -12,21 +12,48 @@ body {
 	text-align: center;
 }
 
+#title a {
+	color: white;
+	text-decoration: none;
+}
+
+#faculty-name {
+	float: left;
+	margin-left: 30%;
+	width: 60%;
+}
+
+#faculty-logout {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	background-color: blue;
+	width: 10%;
+	text-align: center;
+	float: right;
+}
+
+#faculty-logout a {
+	color: white;
+}
+
 #error {
+	margin-top: 5.5%;
 	text-align: center;
 	background-color: red;
 	color: white;
 }
 
-#faculty-name {
-	text-align: center;
+#post-manage {
+	width: 49%;
+	margin-left: 0%;
+	float: left;
+	border-right: 3px solid blue;
 }
 
 #your-posts {
-	height:100px;
-	width: 40%;
 	overflow:auto;
-	margin-left: 30%;
+	width: 50%;
+	float: right;
 }
 
 h3 {
@@ -34,5 +61,10 @@ h3 {
 }
 
 form {
-	margin-left: 35%;
+	margin-left: 20%;
+}
+
+a {
+	color: black;
+	text-decoration: none;
 }

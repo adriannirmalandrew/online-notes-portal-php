@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<div id="title">
-			<h2>Clone University Portal</h2>
+			<a href="/"><h2>Clone University Portal</h2></a>
 		</div>
 		<div id="search-form">
 			<h3>Search Posts:</h3>

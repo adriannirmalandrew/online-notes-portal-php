@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<div id="title">
-			<h2>Clone University Portal</h2>
+			<a href="/"><h2>Clone University Portal</h2></a>
 		</div>
 		<div id="search-form">
 			<h3>Search:</h3>
@@ -48,7 +48,7 @@
 					echo "</html>";
 					exit();
 				}
-				echo "<h3>Results for ";
+				echo "<h3 id=\"search_title\">Results for ";
 				echo "\"".$keyword."\"";
 				echo ":</h3>";
 				echo "<table>";
@@ -72,8 +72,9 @@
 				}
 				//Print search results:
 				odbc_execute($get_by_keyword, array());
+				$result_count=0;
 				while(odbc_fetch_row($get_by_keyword)) {
-					echo "</tr>";
+					echo "<tr>";
 						//Faculty name:
 						echo "<td>";
 							echo "By ";
@@ -93,10 +94,19 @@
 							echo "</a>";
 						echo "</td>";
 					echo "</tr>";
+					++$result_count;
 				}
 				echo "</table>";
 				odbc_close($db_conn);
 			?>
+			<!--Add the number of search results to search_title-->
+			<script>
+				var result_count=<?php echo $result_count; ?>;
+				if(result_count>0) {
+					var search_title=document.getElementById("search_title");
+					search_title.innerHTML=result_count + ' ' + search_title.innerHTML;
+				}
+			</script>
 		</div>
 	</body>
 </html>

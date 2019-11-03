@@ -12,6 +12,11 @@ body {
 	text-align: center;
 }
 
+#title a {
+	color: white;
+	text-decoration: none;
+}
+
 #error {
 	text-align: center;
 	background-color: red;
@@ -19,19 +24,20 @@ body {
 }
 
 #login-form {
-	width: 100%;
+	margin-top: 5%;
+	float: left;
+	width:50%;
 	text-align: center;
 }
 
 #registration-form {
-	width: 100%;
+	margin-top: 5%;
+	float: right;
+	width: 49%;
 	text-align: center;
+	border-left: 2px solid blue;
 }
 
-table {
-	margin-left: 35%;
-}
-
-a {
-	text-align: center;
+form {
+	margin-left: 25%;
 }
