@@ -1,5 +1,8 @@
-# project_3001
-My CSE3001 (Software Engineering) Project
+# Project Information
+
+##online-notes-portal-php
+
+An online portal for uploading notes and other lecture material, written in PHP.
 
 SQL Schema:
 
